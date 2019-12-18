@@ -1,4 +1,17 @@
 #window
 {
     -fx-background-color: #057523;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Ariel";
+    -fx-text-fill: #000000;
+}
+
+Button
+{
+    -fx-font-size: 10pt;
+    -fx-text-fill: #f0c33e;
+    -fx-background-color: #4f3409;
+    -fx-border-color: #734905;
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
 }

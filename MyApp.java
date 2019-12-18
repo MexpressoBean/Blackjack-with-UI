@@ -28,14 +28,17 @@
  *
  ***********************************************************************************/
 
+import java.io.FileNotFoundException;
 import java.util.Random;  // Used for the generation of random numbers for the card values
-
+import java.io.FileInputStream;
 import javafx.application.Application;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 
@@ -44,10 +47,22 @@ public class MyApp extends Application
 {
     // --------------------------------------- VARIABLE DECLARATION -----------------------------------------------
     final String WINDOW_TITLE= "Blackjack";   // Constant (String) - used for the window title
+    final int CARD_SPACE_1X  = 125;
+    final int CARD_SPACE_2X  = 225;
+    final int CARD_SPACE_3X  = 325;
+    final int CARD_SPACE_4X  = 425;
+    final int CARD_SPACE_5X  = 525;
+    final int CARD_SPACE_6X  = 625;
+    final int CARD_SPACE_7X  = 725;
+    final int CARD_SPACE_8X  = 825;
+    final int PLAYER_CARD_Y  = 380;
+    final int DEALER_CARD_Y  = 100;
+    final int CARD_WIDTH     = 80;
+    final int CARD_HEIGHT    = 120;
     final int WINDOW_START_X = 220;           // Constant (Int) - used for the windows starting position on x axis
     final int WINDOW_START_Y = 60;            // Constant (Int) - used for the windows starting position on y axis
     final int WINDOW_H       = 600;           // Constant (Int) - used for the window height
-    final int WINDOW_W       = 800;           // Constant (Int) - used for the window width
+    final int WINDOW_W       = 920;           // Constant (Int) - used for the window width
     final int BUTTON_W       = 100;           // Constant (Int) - used for the button width (preferred)
     final int MAX_SCORE      = 21;            // Constant (Int) - used to represent the winning score number
     final int DECK           = 2;             // Constant (Int) - used for the initial cards drawn
@@ -61,6 +76,24 @@ public class MyApp extends Application
     int dealerScore          = 0;             // Int - used to store the value of the dealers score
     boolean dealersTurn      = false;         // Bool - used to indicate the start of the dealers turn
     boolean gameOver         = false;         // Bool - used to indicate the end of game
+    ImageView cardSpace1P = new ImageView();
+    ImageView cardSpace2P = new ImageView();
+    ImageView cardSpace3P = new ImageView();
+    ImageView cardSpace4P = new ImageView();
+    ImageView cardSpace5P = new ImageView();
+    ImageView cardSpace6P = new ImageView();
+    ImageView cardSpace7P = new ImageView();
+    ImageView cardSpace8P = new ImageView();
+    ImageView cardSpace1D = new ImageView();
+    ImageView cardSpace2D = new ImageView();
+    ImageView cardSpace3D = new ImageView();
+    ImageView cardSpace4D = new ImageView();
+    ImageView cardSpace5D = new ImageView();
+    ImageView cardSpace6D = new ImageView();
+    ImageView cardSpace7D = new ImageView();
+    ImageView cardSpace8D = new ImageView();
+
+
 
 
     @Override
@@ -89,7 +122,13 @@ public class MyApp extends Application
         stage.setX(WINDOW_START_X);
         stage.setY(WINDOW_START_Y);
 
+
         // ----------------------------------- Window Components -----------------------------------------------------
+        // Initialize card images
+        Image cardBack= new Image(new FileInputStream("src/images/red_back.png"));
+
+
+
         // Window layout
         Pane pane = new Pane(); // creates new scene
 
@@ -97,9 +136,118 @@ public class MyApp extends Application
         stage.setScene(new Scene(pane, 300, 250)); // sets the scene for the window
 
 
+        // --------------- Player cards -------------------------
+        // Set image views size and locations of PLAYER cards
+        cardSpace1P.setImage(cardBack);
+        cardSpace1P.setX(CARD_SPACE_1X);
+        cardSpace1P.setY(PLAYER_CARD_Y);
+        cardSpace1P.setFitHeight(CARD_HEIGHT);
+        cardSpace1P.setFitWidth(CARD_WIDTH);
+
+        cardSpace2P.setImage(cardBack);
+        cardSpace2P.setX(CARD_SPACE_2X);
+        cardSpace2P.setY(PLAYER_CARD_Y);
+        cardSpace2P.setFitHeight(CARD_HEIGHT);
+        cardSpace2P.setFitWidth(CARD_WIDTH);
+
+        cardSpace3P.setImage(cardBack);
+        cardSpace3P.setX(CARD_SPACE_3X);
+        cardSpace3P.setY(PLAYER_CARD_Y);
+        cardSpace3P.setFitHeight(CARD_HEIGHT);
+        cardSpace3P.setFitWidth(CARD_WIDTH);
+
+        cardSpace4P.setImage(cardBack);
+        cardSpace4P.setX(CARD_SPACE_4X);
+        cardSpace4P.setY(PLAYER_CARD_Y);
+        cardSpace4P.setFitHeight(CARD_HEIGHT);
+        cardSpace4P.setFitWidth(CARD_WIDTH);
+
+        cardSpace5P.setImage(cardBack);
+        cardSpace5P.setX(CARD_SPACE_5X);
+        cardSpace5P.setY(PLAYER_CARD_Y);
+        cardSpace5P.setFitHeight(CARD_HEIGHT);
+        cardSpace5P.setFitWidth(CARD_WIDTH);
+
+        cardSpace6P.setImage(cardBack);
+        cardSpace6P.setX(CARD_SPACE_6X);
+        cardSpace6P.setY(PLAYER_CARD_Y);
+        cardSpace6P.setFitHeight(CARD_HEIGHT);
+        cardSpace6P.setFitWidth(CARD_WIDTH);
+
+        cardSpace7P.setImage(cardBack);
+        cardSpace7P.setX(CARD_SPACE_7X);
+        cardSpace7P.setY(PLAYER_CARD_Y);
+        cardSpace7P.setFitHeight(CARD_HEIGHT);
+        cardSpace7P.setFitWidth(CARD_WIDTH);
+
+        cardSpace8P.setImage(cardBack);
+        cardSpace8P.setX(CARD_SPACE_8X);
+        cardSpace8P.setY(PLAYER_CARD_Y);
+        cardSpace8P.setFitHeight(CARD_HEIGHT);
+        cardSpace8P.setFitWidth(CARD_WIDTH);
+
+
+
+        // --------------- Dealer cards -------------------------
+        // Set image views size and locations of DEALER cards
+        cardSpace1D.setImage(cardBack);
+        cardSpace1D.setX(CARD_SPACE_1X);
+        cardSpace1D.setY(DEALER_CARD_Y);
+        cardSpace1D.setFitHeight(CARD_HEIGHT);
+        cardSpace1D.setFitWidth(CARD_WIDTH);
+
+        cardSpace2D.setImage(cardBack);
+        cardSpace2D.setX(CARD_SPACE_2X);
+        cardSpace2D.setY(DEALER_CARD_Y);
+        cardSpace2D.setFitHeight(CARD_HEIGHT);
+        cardSpace2D.setFitWidth(CARD_WIDTH);
+
+        cardSpace3D.setImage(cardBack);
+        cardSpace3D.setX(CARD_SPACE_3X);
+        cardSpace3D.setY(DEALER_CARD_Y);
+        cardSpace3D.setFitHeight(CARD_HEIGHT);
+        cardSpace3D.setFitWidth(CARD_WIDTH);
+
+        cardSpace4D.setImage(cardBack);
+        cardSpace4D.setX(CARD_SPACE_4X);
+        cardSpace4D.setY(DEALER_CARD_Y);
+        cardSpace4D.setFitHeight(CARD_HEIGHT);
+        cardSpace4D.setFitWidth(CARD_WIDTH);
+
+        cardSpace5D.setImage(cardBack);
+        cardSpace5D.setX(CARD_SPACE_5X);
+        cardSpace5D.setY(DEALER_CARD_Y);
+        cardSpace5D.setFitHeight(CARD_HEIGHT);
+        cardSpace5D.setFitWidth(CARD_WIDTH);
+
+        cardSpace6D.setImage(cardBack);
+        cardSpace6D.setX(CARD_SPACE_6X);
+        cardSpace6D.setY(DEALER_CARD_Y);
+        cardSpace6D.setFitHeight(CARD_HEIGHT);
+        cardSpace6D.setFitWidth(CARD_WIDTH);
+
+        cardSpace7D.setImage(cardBack);
+        cardSpace7D.setX(CARD_SPACE_7X);
+        cardSpace7D.setY(DEALER_CARD_Y);
+        cardSpace7D.setFitHeight(CARD_HEIGHT);
+        cardSpace7D.setFitWidth(CARD_WIDTH);
+
+        cardSpace8D.setImage(cardBack);
+        cardSpace8D.setX(CARD_SPACE_8X);
+        cardSpace8D.setY(DEALER_CARD_Y);
+        cardSpace8D.setFitHeight(CARD_HEIGHT);
+        cardSpace8D.setFitWidth(CARD_WIDTH);
+
+
+
+
+
+
         // Player dealt 2 starting cards
         playerCards = draw(); // Draws two cards for the player
         playerScore = updateScore(playerScore, playerCards);
+        calcCardImageDisplay(playerCards[0], cardSpace1P);
+        calcCardImageDisplay(playerCards[1], cardSpace2P);
 
 
         // Dealer dealt 2 starting cards
@@ -154,12 +302,12 @@ public class MyApp extends Application
         newCardOut.setLayoutY(350);
 
         // A line that divides the player and dealer area
-        Rectangle rectangle = new Rectangle(0, 300, 800, 1);
+        Rectangle rectangle = new Rectangle(0, 300, 1000, 1);
 
         // Label that alerts the player that is the dealers turn
         Label dealerTurnAlert = new Label(" ");
 
-        dealerTurnAlert.setLayoutX(280);
+        dealerTurnAlert.setLayoutX(260);
         dealerTurnAlert.setLayoutY(280);
 
 
@@ -182,6 +330,14 @@ public class MyApp extends Application
         dealerNextMoveButton.setLayoutX(10);
         dealerNextMoveButton.setLayoutY(100);
 
+        Button newGameButton = new Button("New Game");
+
+        newGameButton.setPrefWidth(BUTTON_W);
+        newGameButton.setLayoutX(10);
+        newGameButton.setLayoutY(140);
+        newGameButton.setVisible(false);
+
+
 
 
 
@@ -203,12 +359,14 @@ public class MyApp extends Application
                 {
                     System.out.print("Player WIN!!\n");
                     dealerTurnAlert.setText("Game Over: Player Wins!!!");
+                    newGameButton.setVisible(true);
                     gameOver = true;
                 }
                 else if(playerScore > MAX_SCORE)
                 {
                     System.out.print("Dealer wins. Player busted...\n");
                     dealerTurnAlert.setText("Game Over: Dealer Wins. Player busted.");
+                    newGameButton.setVisible(true);
                     gameOver = true;
                 }
             }
@@ -226,6 +384,18 @@ public class MyApp extends Application
 
                 startingDealerInfo.setText("Dealer starting cards: " + dealerCards[0] + " and " + dealerCards[1]);
                 dealerScoreBoard.setText("Dealer score: " + dealerScore);
+
+                try {
+                    calcCardImageDisplay(dealerCards[0], cardSpace1D);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+
+                try {
+                    calcCardImageDisplay(dealerCards[1], cardSpace2D);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
             }
         }); // END stayButton action handler
 
@@ -274,6 +444,7 @@ public class MyApp extends Application
                 {
                     System.out.print("\nYOU WIN!!\n");
                     dealerTurnAlert.setText("Game Over: Player Wins!!!");
+                    newGameButton.setVisible(true);
                     gameOver = true;
                 }
                 else
@@ -282,12 +453,14 @@ public class MyApp extends Application
                     {
                         System.out.print("\nDealer wins. \n");
                         dealerTurnAlert.setText("Game Over: Dealer Wins.");
+                        newGameButton.setVisible(true);
                         gameOver = true;
                     }
                     else
                     {
                         System.out.print("\nYOU WIN!! Dealer busted.\n");
                         dealerTurnAlert.setText("Game Over: Player Wins!!! Dealer busted.");
+                        newGameButton.setVisible(true);
                         gameOver = true;
                     }
                 }
@@ -295,19 +468,31 @@ public class MyApp extends Application
         }); // END nextMoveButton action handler
 
 
-        // Disables all buttons once the game is over and adds restart/play again button
-        if(gameOver)
-        {
-            hitButton.setDisable(true);
-            stayButton.setDisable(true);
-            dealerNextMoveButton.setDisable(true);
 
+        newGameButton.setOnAction(e -> {
+            try {
+                resetGame(hitButton,
+                        stayButton,
+                        newGameButton,
+                        dealerNextMoveButton,
+                        startingDealerInfo,
+                        dealerScoreBoard,
+                        startingPlayerInfo,
+                        playerScoreBoard,
+                        newCardOut,
+                        dealerTurnAlert,
+                        dealerNewCardOut,
+                        dealerDecision) ;
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
+        });
 
-        }
 
 
         pane.getStylesheets().add("styles/styles.css");
         pane.setId("window");
+
 
         // Renders all components on the window(stage) (children of the root component
         pane.getChildren().addAll(startingPlayerInfo,
@@ -321,7 +506,24 @@ public class MyApp extends Application
                                   dealerTurnAlert,
                                   dealerNextMoveButton,
                                   dealerNewCardOut,
-                                  dealerDecision); // adds this to the window
+                                  dealerDecision,
+                                  newGameButton,
+                                  cardSpace1P,
+                                  cardSpace2P,
+                                  cardSpace3P,
+                                  cardSpace4P,
+                                  cardSpace5P,
+                                  cardSpace6P,
+                                  cardSpace7P,
+                                  cardSpace8P,
+                                  cardSpace1D,
+                                  cardSpace2D,
+                                  cardSpace3D,
+                                  cardSpace4D,
+                                  cardSpace5D,
+                                  cardSpace6D,
+                                  cardSpace7D,
+                                  cardSpace8D); // adds this to the window
         // ----------------------------------- Window (stage) is displayed ----------------------------------------
         // Makes the window unable to be resized
         stage.setResizable(false);
@@ -402,5 +604,126 @@ public class MyApp extends Application
         return rand;
     } // END getRandomNum
 
+
+
+
+
+    void calcCardImageDisplay(int num, ImageView space) throws FileNotFoundException
+    {
+        Image two      = new Image(new FileInputStream("src/images/2D.png"));
+        Image three    = new Image(new FileInputStream("src/images/3D.png"));
+        Image four     = new Image(new FileInputStream("src/images/4D.png"));
+        Image five     = new Image(new FileInputStream("src/images/5D.png"));
+        Image six      = new Image(new FileInputStream("src/images/6D.png"));
+        Image seven    = new Image(new FileInputStream("src/images/7D.png"));
+        Image eight    = new Image(new FileInputStream("src/images/8D.png"));
+        Image nine     = new Image(new FileInputStream("src/images/9D.png"));
+        Image ten      = new Image(new FileInputStream("src/images/10D.png"));
+        Image ace      = new Image(new FileInputStream("src/images/AD.png"));
+        Image queen    = new Image(new FileInputStream("src/images/QD.png"));
+        Image king     = new Image(new FileInputStream("src/images/KD.png"));
+        Image jack     = new Image(new FileInputStream("src/images/JD.png"));
+        Image cardBack2= new Image(new FileInputStream("src/images/red_back.png"));
+
+
+        switch(num)
+        {
+            case 0: space.setImage(cardBack2);
+                break;
+            case 1:
+            case 11:
+                space.setImage(ace);
+                break;
+            case 2: space.setImage(two);
+                break;
+            case 3: space.setImage(three);
+                break;
+            case 4: space.setImage(four);
+                break;
+            case 5: space.setImage(five);
+                break;
+            case 6: space.setImage(six);
+                break;
+            case 7: space.setImage(seven);
+                break;
+            case 8: space.setImage(eight);
+                break;
+            case 9: space.setImage(nine);
+                break;
+            case 10: space.setImage(ten);
+                break;
+        }
+    }// END calcCardImageDisplay(int num, ImageView space)
+
+
+
+
+
+
+    void resetGame(Button hitButton,
+                   Button stayButton,
+                   Button newGameButton,
+                   Button dealerNextMoveButton,
+                   Label dealerStartingInfo,
+                   Label dealerScoreBoard,
+                   Label startingPlayerInfo,
+                   Label playerScoreBoard,
+                   Label newCardOut,
+                   Label dealerTurnAlert,
+                   Label dealerNewCardOut,
+                   Label dealerDecision) throws FileNotFoundException
+    {
+        newGameButton.setVisible(false);
+
+        playerScore = 0;
+        dealerScore = 0;
+
+        playerCards[0] = 0;
+        playerCards[1] = 0;
+
+        dealerCards[0] = 0;
+        dealerCards[1] = 0;
+
+
+
+        // Player dealt 2 starting cards
+        playerCards = draw(); // Draws two cards for the player
+        playerScore = updateScore(playerScore, playerCards);
+        calcCardImageDisplay(playerCards[0], cardSpace1P);
+        calcCardImageDisplay(playerCards[1], cardSpace2P);
+
+
+        // Dealer dealt 2 starting cards
+        dealerCards = draw(); // Draws two cards for the dealer, displays one, the other is hidden
+        dealerScore = updateScore(dealerScore, dealerCards);
+        calcCardImageDisplay(0, cardSpace1D);
+        calcCardImageDisplay(0, cardSpace2D);
+
+
+        if(playerScore == MAX_SCORE)
+        {
+            dealerTurnAlert.setText("Player wins.");
+            newGameButton.setVisible(true);
+        }
+        else if(dealerScore == MAX_SCORE)
+        {
+            dealerTurnAlert.setText("Dealer wins.");
+            newGameButton.setVisible(true);
+        }
+
+        dealerStartingInfo.setText("Dealer has a " + dealerCards[0] + " showing, and a hidden card.");
+        dealerScoreBoard.setText("Dealer score is hidden.");
+
+        startingPlayerInfo.setText("Starting cards: " + playerCards[0] + " and " + playerCards[1]);
+        playerScoreBoard.setText("Player score: " + playerScore);
+
+        newCardOut.setText(" ");
+        dealerTurnAlert.setText(" ");
+        dealerNewCardOut.setText(" ");
+        dealerDecision.setText(" ");
+
+        gameOver = false;
+        dealersTurn = false;
+    }
 
 }// END myApp class
