@@ -47,29 +47,24 @@ public class MyApp extends Application
 {
     // --------------------------------------- VARIABLE DECLARATION -----------------------------------------------
     final String WINDOW_TITLE= "Blackjack";   // Constant (String) - used for the window title
-    final int CARD_SPACE_1X  = 125;
-    final int CARD_SPACE_2X  = 225;
-    final int CARD_SPACE_3X  = 325;
-    final int CARD_SPACE_4X  = 425;
-    final int CARD_SPACE_5X  = 525;
-    final int CARD_SPACE_6X  = 625;
-    final int CARD_SPACE_7X  = 725;
-    final int CARD_SPACE_8X  = 825;
+    final int CARD_SPACE_1X  = 155;
+    final int CARD_SPACE_2X  = 265;
+    final int CARD_SPACE_4X  = 485;
     final int PLAYER_CARD_Y  = 380;
     final int DEALER_CARD_Y  = 100;
-    final int CARD_WIDTH     = 80;
-    final int CARD_HEIGHT    = 120;
+    final int CARD_WIDTH     = 100;
+    final int CARD_HEIGHT    = 140;
     final int WINDOW_START_X = 220;           // Constant (Int) - used for the windows starting position on x axis
     final int WINDOW_START_Y = 60;            // Constant (Int) - used for the windows starting position on y axis
     final int WINDOW_H       = 600;           // Constant (Int) - used for the window height
-    final int WINDOW_W       = 920;           // Constant (Int) - used for the window width
+    final int WINDOW_W       = 800;           // Constant (Int) - used for the window width
     final int BUTTON_W       = 100;           // Constant (Int) - used for the button width (preferred)
     final int MAX_SCORE      = 21;            // Constant (Int) - used to represent the winning score number
     final int DECK           = 2;             // Constant (Int) - used for the initial cards drawn
-    int hitAr[]              = new int[DECK]; // Array - used to store the returned values from the hit() function when player chooses hit
-    int dealerHitAr[]        = new int[DECK]; // Array - used to store the returned values from the hit() function when dealer chooses hit
-    int playerCards[]        = new int[DECK]; // Array - used to hold the values of the players two cards
-    int dealerCards[]        = new int[DECK]; // Array - used to hold the values of the dealers two cards
+    int[] hitAr = new int[DECK]; // Array - used to store the returned values from the hit() function when player chooses hit
+    int[] dealerHitAr = new int[DECK]; // Array - used to store the returned values from the hit() function when dealer chooses hit
+    int[] playerCards = new int[DECK]; // Array - used to hold the values of the players two cards
+    int[] dealerCards = new int[DECK]; // Array - used to hold the values of the dealers two cards
     int dealerNewCard        = 0;             // Int - used to hold the value of the a new card drawn by the dealer
     int newCard              = 0;             // Int - used to hold the value of the a new card drawn by the player
     int playerScore          = 0;             // Int - used to store the value of the players score
@@ -78,26 +73,18 @@ public class MyApp extends Application
     boolean gameOver         = false;         // Bool - used to indicate the end of game
     ImageView cardSpace1P = new ImageView();
     ImageView cardSpace2P = new ImageView();
-    ImageView cardSpace3P = new ImageView();
     ImageView cardSpace4P = new ImageView();
-    ImageView cardSpace5P = new ImageView();
-    ImageView cardSpace6P = new ImageView();
-    ImageView cardSpace7P = new ImageView();
-    ImageView cardSpace8P = new ImageView();
+
     ImageView cardSpace1D = new ImageView();
     ImageView cardSpace2D = new ImageView();
-    ImageView cardSpace3D = new ImageView();
     ImageView cardSpace4D = new ImageView();
-    ImageView cardSpace5D = new ImageView();
-    ImageView cardSpace6D = new ImageView();
-    ImageView cardSpace7D = new ImageView();
-    ImageView cardSpace8D = new ImageView();
+
 
 
 
 
     @Override
-    public void init() throws Exception
+    public void init()
     {
         System.out.println("Program started running.");
     }
@@ -150,11 +137,7 @@ public class MyApp extends Application
         cardSpace2P.setFitHeight(CARD_HEIGHT);
         cardSpace2P.setFitWidth(CARD_WIDTH);
 
-        cardSpace3P.setImage(cardBack);
-        cardSpace3P.setX(CARD_SPACE_3X);
-        cardSpace3P.setY(PLAYER_CARD_Y);
-        cardSpace3P.setFitHeight(CARD_HEIGHT);
-        cardSpace3P.setFitWidth(CARD_WIDTH);
+
 
         cardSpace4P.setImage(cardBack);
         cardSpace4P.setX(CARD_SPACE_4X);
@@ -162,29 +145,6 @@ public class MyApp extends Application
         cardSpace4P.setFitHeight(CARD_HEIGHT);
         cardSpace4P.setFitWidth(CARD_WIDTH);
 
-        cardSpace5P.setImage(cardBack);
-        cardSpace5P.setX(CARD_SPACE_5X);
-        cardSpace5P.setY(PLAYER_CARD_Y);
-        cardSpace5P.setFitHeight(CARD_HEIGHT);
-        cardSpace5P.setFitWidth(CARD_WIDTH);
-
-        cardSpace6P.setImage(cardBack);
-        cardSpace6P.setX(CARD_SPACE_6X);
-        cardSpace6P.setY(PLAYER_CARD_Y);
-        cardSpace6P.setFitHeight(CARD_HEIGHT);
-        cardSpace6P.setFitWidth(CARD_WIDTH);
-
-        cardSpace7P.setImage(cardBack);
-        cardSpace7P.setX(CARD_SPACE_7X);
-        cardSpace7P.setY(PLAYER_CARD_Y);
-        cardSpace7P.setFitHeight(CARD_HEIGHT);
-        cardSpace7P.setFitWidth(CARD_WIDTH);
-
-        cardSpace8P.setImage(cardBack);
-        cardSpace8P.setX(CARD_SPACE_8X);
-        cardSpace8P.setY(PLAYER_CARD_Y);
-        cardSpace8P.setFitHeight(CARD_HEIGHT);
-        cardSpace8P.setFitWidth(CARD_WIDTH);
 
 
 
@@ -202,11 +162,7 @@ public class MyApp extends Application
         cardSpace2D.setFitHeight(CARD_HEIGHT);
         cardSpace2D.setFitWidth(CARD_WIDTH);
 
-        cardSpace3D.setImage(cardBack);
-        cardSpace3D.setX(CARD_SPACE_3X);
-        cardSpace3D.setY(DEALER_CARD_Y);
-        cardSpace3D.setFitHeight(CARD_HEIGHT);
-        cardSpace3D.setFitWidth(CARD_WIDTH);
+
 
         cardSpace4D.setImage(cardBack);
         cardSpace4D.setX(CARD_SPACE_4X);
@@ -214,29 +170,6 @@ public class MyApp extends Application
         cardSpace4D.setFitHeight(CARD_HEIGHT);
         cardSpace4D.setFitWidth(CARD_WIDTH);
 
-        cardSpace5D.setImage(cardBack);
-        cardSpace5D.setX(CARD_SPACE_5X);
-        cardSpace5D.setY(DEALER_CARD_Y);
-        cardSpace5D.setFitHeight(CARD_HEIGHT);
-        cardSpace5D.setFitWidth(CARD_WIDTH);
-
-        cardSpace6D.setImage(cardBack);
-        cardSpace6D.setX(CARD_SPACE_6X);
-        cardSpace6D.setY(DEALER_CARD_Y);
-        cardSpace6D.setFitHeight(CARD_HEIGHT);
-        cardSpace6D.setFitWidth(CARD_WIDTH);
-
-        cardSpace7D.setImage(cardBack);
-        cardSpace7D.setX(CARD_SPACE_7X);
-        cardSpace7D.setY(DEALER_CARD_Y);
-        cardSpace7D.setFitHeight(CARD_HEIGHT);
-        cardSpace7D.setFitWidth(CARD_WIDTH);
-
-        cardSpace8D.setImage(cardBack);
-        cardSpace8D.setX(CARD_SPACE_8X);
-        cardSpace8D.setY(DEALER_CARD_Y);
-        cardSpace8D.setFitHeight(CARD_HEIGHT);
-        cardSpace8D.setFitWidth(CARD_WIDTH);
 
 
 
@@ -258,11 +191,14 @@ public class MyApp extends Application
         // Label that shows one of the cards drawn by the dealer
         Label startingDealerInfo = new Label("Dealer has a " + dealerCards[0] + " showing, and a hidden card.");
 
+
         startingDealerInfo.setLayoutX(10);
         startingDealerInfo.setLayoutY(10);
 
+
         // Label that shows the dealer score
         Label dealerScoreBoard = new Label("Dealer score is hidden.");
+
 
         dealerScoreBoard.setLayoutX(10);
         dealerScoreBoard.setLayoutY(30);
@@ -350,9 +286,17 @@ public class MyApp extends Application
                 hitAr = hit(playerScore);
                 playerScore = hitAr[0];
                 newCard = hitAr[1];
+                try {
+                    calcCardImageDisplay(newCard, cardSpace4P);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+
 
                 newCardOut.setText("Player drew a " + newCard);
                 playerScoreBoard.setText("Player score: " + playerScore);
+
+
 
                 // Determines if the player has won or lost
                 if(playerScore == MAX_SCORE)
@@ -411,6 +355,12 @@ public class MyApp extends Application
                 dealerHitAr = hit(dealerScore);
                 dealerScore = dealerHitAr[0];
                 dealerNewCard = dealerHitAr[1];
+
+                try {
+                    calcCardImageDisplay(dealerNewCard, cardSpace4D);
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
 
                 System.out.print("\nDealer drew a " + dealerNewCard + ". \n");
                 System.out.print("Dealer total is " + dealerScore + "\n\n");
@@ -471,18 +421,15 @@ public class MyApp extends Application
 
         newGameButton.setOnAction(e -> {
             try {
-                resetGame(hitButton,
-                        stayButton,
-                        newGameButton,
-                        dealerNextMoveButton,
-                        startingDealerInfo,
-                        dealerScoreBoard,
-                        startingPlayerInfo,
-                        playerScoreBoard,
-                        newCardOut,
-                        dealerTurnAlert,
-                        dealerNewCardOut,
-                        dealerDecision) ;
+                resetGame(newGameButton,
+                          startingDealerInfo,
+                          dealerScoreBoard,
+                          startingPlayerInfo,
+                          playerScoreBoard,
+                          newCardOut,
+                          dealerTurnAlert,
+                          dealerNewCardOut,
+                          dealerDecision) ;
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -510,20 +457,10 @@ public class MyApp extends Application
                                   newGameButton,
                                   cardSpace1P,
                                   cardSpace2P,
-                                  cardSpace3P,
                                   cardSpace4P,
-                                  cardSpace5P,
-                                  cardSpace6P,
-                                  cardSpace7P,
-                                  cardSpace8P,
                                   cardSpace1D,
                                   cardSpace2D,
-                                  cardSpace3D,
-                                  cardSpace4D,
-                                  cardSpace5D,
-                                  cardSpace6D,
-                                  cardSpace7D,
-                                  cardSpace8D); // adds this to the window
+                                  cardSpace4D); // adds this to the window
         // ----------------------------------- Window (stage) is displayed ----------------------------------------
         // Makes the window unable to be resized
         stage.setResizable(false);
@@ -538,7 +475,7 @@ public class MyApp extends Application
 
     // This method runs after the program is ended
     @Override
-    public void stop() throws Exception
+    public void stop()
     {
         System.out.println("Program is finished running.");
     }
@@ -599,11 +536,9 @@ public class MyApp extends Application
         final int MAX = 11; // Max number that will be produced
         final int MIN = 1;  // Min number that will be produced
         Random randomNumber = new Random();
-        int rand = randomNumber.nextInt((MAX - MIN) + 1) + MIN;
 
-        return rand;
+        return randomNumber.nextInt((MAX - MIN) + 1) + MIN;
     } // END getRandomNum
-
 
 
 
@@ -620,9 +555,6 @@ public class MyApp extends Application
         Image nine     = new Image(new FileInputStream("src/images/9D.png"));
         Image ten      = new Image(new FileInputStream("src/images/10D.png"));
         Image ace      = new Image(new FileInputStream("src/images/AD.png"));
-        Image queen    = new Image(new FileInputStream("src/images/QD.png"));
-        Image king     = new Image(new FileInputStream("src/images/KD.png"));
-        Image jack     = new Image(new FileInputStream("src/images/JD.png"));
         Image cardBack2= new Image(new FileInputStream("src/images/red_back.png"));
 
 
@@ -660,10 +592,7 @@ public class MyApp extends Application
 
 
 
-    void resetGame(Button hitButton,
-                   Button stayButton,
-                   Button newGameButton,
-                   Button dealerNextMoveButton,
+    void resetGame(Button newGameButton,
                    Label dealerStartingInfo,
                    Label dealerScoreBoard,
                    Label startingPlayerInfo,
@@ -674,6 +603,17 @@ public class MyApp extends Application
                    Label dealerDecision) throws FileNotFoundException
     {
         newGameButton.setVisible(false);
+
+        // Player cards reset
+        calcCardImageDisplay(0,cardSpace1P);
+        calcCardImageDisplay(0,cardSpace2P);
+        calcCardImageDisplay(0,cardSpace4P);
+
+        // Dealer cards reset
+        calcCardImageDisplay(0,cardSpace1D);
+        calcCardImageDisplay(0,cardSpace2D);
+        calcCardImageDisplay(0,cardSpace4D);
+
 
         playerScore = 0;
         dealerScore = 0;
@@ -721,6 +661,7 @@ public class MyApp extends Application
         dealerTurnAlert.setText(" ");
         dealerNewCardOut.setText(" ");
         dealerDecision.setText(" ");
+
 
         gameOver = false;
         dealersTurn = false;
